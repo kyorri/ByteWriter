@@ -1,0 +1,27 @@
+﻿@using ByteWriter.Models.ViewModels
+@model EditBioViewModel
+
+
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+<div class="container col-md-6">
+    <h1 class="mt-4">Edit Profile</h1>
+    <hr class="mb-4">
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Bio">Enter your Bio</label>
+            <textarea asp-for="Bio" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Bio" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Update Bio</button>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

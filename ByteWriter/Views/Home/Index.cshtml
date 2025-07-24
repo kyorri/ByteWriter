@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ByteWriter.Models
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <div class="col">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-6 my-2">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success text-center" role="alert">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+            </div>
+        </div>
+        <img class="d-block mx-auto mb-4" src="~/images/logo.png" alt="Logo of the website."
+             style="width: 13rem;">
+        <h1 class="display-3 fw-bold text-body-emphasis">ByteWriter</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">
+                Welcome to the world's best social media blogging app in which every idea is
+                bananas. Go creative!
+            </p>
+            @if (SignInManager.IsSignedIn(User))
+            {
+            }
+            else
+            {
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
+                        <a class="nav-link text-white" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-lg px-4">
+                        <a class="nav-link text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

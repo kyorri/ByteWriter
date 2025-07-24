@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ByteWriter.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Your articles</h1>
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.ArticleTitle)</h5>
+                        <p class="card-text fst-italic">@Html.DisplayFor(modelItem => item.ArticleDescription)</p>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.ArticleContent)</p>
+                        <p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => item.ArticleTimestamp)</small></p>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ArticleID">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No articles to display.</p>
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>

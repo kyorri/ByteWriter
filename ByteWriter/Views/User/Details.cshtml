@@ -1,0 +1,24 @@
+﻿@model ByteWriter.Models.Article
+
+@{
+    ViewData["Title"] = "Article Details";
+}
+
+<h2>Article Details</h2>
+
+<div>
+    <h3>@Model.ArticleTitle</h3>
+    <p><strong>Description:</strong> @Model.ArticleDescription</p>
+    <p>@Model.ArticleContent</p>
+    <p><strong>Posted on:</strong> @Model.ArticleTimestamp?.ToString("MMMM dd, yyyy")</p>
+
+    @if (Model.Attachment != null)
+    {
+        <div>
+            <h4>Attachment: @Model.Attachment.AttachmentName</h4>
+            <!-- You might want to provide a download link or display the attachment content here -->
+        </div>
+    }
+</div>
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Home</a>

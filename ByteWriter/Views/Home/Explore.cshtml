@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Explore";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-3 card mb-3 mx-2">
+            <img src="~/images/trending_blogs_preview.jpeg" class="card-img-top my-3" alt="Explore trending blogs">
+            <div class="card-header">
+                Engage with the latest content
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Trending Blogs</h5>
+                <p class="card-text">See the latest trending content on the platform</p>
+                <a class="btn btn-primary" asp-area="" asp-controller="TrendingBlog" asp-action="Index">
+                    Go join them up!
+                </a>
+            </div>
+        </div>
+        <div class="col-md-3 card mb-3 mx-2">
+            <img src="~/images/friends_blogs_preview.jpeg" class="card-img-top my-3" alt="Explore your friends' posts">
+            <div class="card-header">
+                Follow up on your friends
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Friends' Blogs</h5>
+                <p class="card-text">See the latest post from your friends</p>
+                <a class="btn btn-primary" asp-area="" asp-controller="FriendBlog" asp-action="Index">
+                    Go join them up!
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

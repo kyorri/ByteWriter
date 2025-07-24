@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ByteWriter.Models.ViewModels.UserSearchViewModel>
+
+@{
+    ViewBag.Title = "User Search";
+}
+
+<div class="container col-md-6">
+    <h2>User Search</h2>
+
+    <form method="get" asp-action="Search" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="query" class="form-control" placeholder="Search by username" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    <hr/>
+    @if (Model.Any())
+    {
+        <div class="list-group">
+            @foreach (var user in Model)
+            {
+                <div class="list-group-item">
+                    <div class="media">
+                        <svg class="mr-3 mt-2" data-jdenticon-value="@user.Email" width="50" height="50"></svg>
+                        <div class="media-body">
+                            <h5 class="mt-0">@user.UserName</h5>
+                            <p>@user.Email</p>
+                            <p>@user.Bio</p>
+
+                            @if (!user.IsCurrentUser)
+                            {
+                                @if (user.IsFollowing)
+                                {
+                                    <form asp-action="Unfollow" method="post" style="display:inline;">
+                                        <input type="hidden" name="userId" value="@user.UserId" />
+                                        <button type="submit" class="btn btn-danger">Unfollow</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form asp-action="Follow" method="post" style="display:inline;">
+                                        <input type="hidden" name="userId" value="@user.UserId" />
+                                        <button type="submit" class="btn btn-success">Follow</button>
+                                    </form>
+                                }
+                            }
+
+                            <a class="btn btn-primary" asp-controller="User" asp-action="Profile" asp-route-username="@user.Email">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No users found!</p>
+    }
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jdenticon@3.3.0/dist/jdenticon.min.js" async
+        integrity="sha384-LfouGM03m83ArVtne1JPk926e3SGD0Tz8XHtW2OKGsgeBU/UfR0Fa8eX+UlwSSAZ" crossorigin="anonymous">
+</script>
